@@ -6,21 +6,19 @@ SecretBox::SecretBox(SecretBoxType type, const Position &pos)
     switch (type) {
     case SecretBox::Coin:
     case SecretBox::Mushroom:
-        image = al_load_bitmap("res/images/secret-box.png");
+        bitmap.load("res/images/secret-box.png");
         break;
     case SecretBox::Brick_Coin:
     case SecretBox::Brick_Star:
-        image = al_load_bitmap("res/images/brick.png");
+        bitmap.load("res/images/brick.png");
         break;
     case SecretBox::Hidden:
-        image = al_load_bitmap("res/images/solid.png");
+        bitmap.load("res/images/solid.png");
         isHidden = true;
         break;
     }
-    imageWidth = al_get_bitmap_width(image);
-    imageHeight = al_get_bitmap_height(image);
-    scaledWidth = imageWidth * SCALE;
-    scaledHeight = imageHeight * SCALE;
+    scaledWidth = bitmap.getWidth() * SCALE;
+    scaledHeight = bitmap.getHeight() * SCALE;
     box = new Rectangle(position.x, position.y, scaledWidth, scaledHeight);
     objectType = GameObject::SecretBox;
 }
@@ -30,7 +28,7 @@ void SecretBox::update(ALLEGRO_EVENT event){
 }
 
 void SecretBox::draw(){
-    al_draw_scaled_bitmap(image, 0, 0, imageWidth, imageHeight, box->left, box->top, scaledWidth, scaledHeight, 0);
+    al_draw_scaled_bitmap(bitmap.getImage(), 0, 0, bitmap.getWidth(), bitmap.getHeight(), box->left, box->top, scaledWidth, scaledHeight, 0);
 }
 
 void SecretBox::moveLeft() {

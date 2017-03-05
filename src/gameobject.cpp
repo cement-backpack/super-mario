@@ -5,6 +5,11 @@ GameObject::GameObject(const Position &pos)
 {
 }
 
+GameObject::GameObject(const std::string &bitmapFilename, const Position &pos)
+    : bitmap(bitmapFilename), position(pos)
+{
+}
+
 void GameObject::loadContent() {
 
 }

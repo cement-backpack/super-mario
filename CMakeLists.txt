@@ -8,6 +8,7 @@ project (Mario-Allegro
 set (CMAKE_CXX_STANDARD 11)
 
 add_executable (Mario-Allegro
+	src/bitmap.cpp
 	src/block.cpp
 	src/brick.cpp
 	src/bush.cpp

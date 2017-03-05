@@ -1,7 +1,7 @@
 #include "enemy.h"
 
-Enemy::Enemy(const Position &pos)
-    : GameObject(pos)
+Enemy::Enemy(const std::string &bitmapFilename, const Position &pos)
+    : GameObject(bitmapFilename, pos)
 {
 }
 

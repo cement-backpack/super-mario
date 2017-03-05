@@ -1,21 +1,18 @@
 #ifndef GAMEOBJECT_H
 #define GAMEOBJECT_H
 
-#include "rectangle.h"
+#include "bitmap.h"
 #include "position.h"
+#include "rectangle.h"
 
 #include <allegro5/allegro.h>
-
-#include <utility>
 
 #define SCALE 2
 
 class GameObject {
 protected:
     Position position;
-    ALLEGRO_BITMAP *image;
-    float imageWidth;
-    float imageHeight;
+    Bitmap bitmap;
     float scaledWidth, scaledHeight;
     float gravity;
 
@@ -41,6 +38,7 @@ public:
     std::pair<float, float> velocity;
 
     GameObject(const Position &pos);
+    GameObject(const std::string &bitmapFilename, const Position &pos);
 
     virtual void loadContent();
     virtual void unloadContect();

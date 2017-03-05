@@ -1,23 +1,8 @@
 #include "mario.h"
 
-void Mario::initMarioRects() {
-    imageHeight = al_get_bitmap_height(image);
-    imageWidth = al_get_bitmap_width(image);
-    scaledWidth = imageWidth / 3 * SCALE;
-    scaledHeight = imageHeight / 3 * SCALE;
-    stand = new Rectangle(imageWidth / 3 * 2, imageHeight / 3, imageWidth / 3, imageHeight / 3);
-    run = new Rectangle(imageWidth / 3, imageHeight / 3, imageWidth / 3, imageHeight / 3);
-    crouchOrDie = new Rectangle(0, 0, imageWidth / 3, imageHeight / 3);
-    for (int i = 0; i < 2; i++)
-        hang[i] = new Rectangle(imageWidth / 3 * (i + 1), 0, imageWidth / 3, imageHeight / 3);
-    for (int i = 0; i < 3; i++)
-        walk[i] = new Rectangle(imageWidth / 3 * i, imageHeight / 3 * 2, imageWidth / 3, imageHeight / 3);
-}
-
 Mario::Mario(SoundManager *sound)
-    : GameObject(Position(32 * SCALE, 32 * SCALE))
+    : GameObject("res/images/mario-small.png", Position(32 * SCALE, 32 * SCALE))
 {
-    image = al_load_bitmap("res/images/mario-small.png");
     type = Mario::Small;
     initMarioRects();
     currentFrame = stand;
@@ -29,6 +14,18 @@ Mario::Mario(SoundManager *sound)
     isCollidable = true;
 
     this->sound = sound;
+}
+
+void Mario::initMarioRects() {
+    scaledWidth = bitmap.getWidth() / 3 * SCALE;
+    scaledHeight = bitmap.getHeight() / 3 * SCALE;
+    stand = new Rectangle(bitmap.getWidth() / 3 * 2, bitmap.getHeight() / 3, bitmap.getWidth() / 3, bitmap.getHeight() / 3);
+    run = new Rectangle(bitmap.getWidth() / 3, bitmap.getHeight() / 3, bitmap.getWidth() / 3, bitmap.getHeight() / 3);
+    crouchOrDie = new Rectangle(0, 0, bitmap.getWidth() / 3, bitmap.getHeight() / 3);
+    for (int i = 0; i < 2; i++)
+        hang[i] = new Rectangle(bitmap.getWidth() / 3 * (i + 1), 0, bitmap.getWidth() / 3, bitmap.getHeight() / 3);
+    for (int i = 0; i < 3; i++)
+        walk[i] = new Rectangle(bitmap.getWidth() / 3 * i, bitmap.getHeight() / 3 * 2, bitmap.getWidth() / 3, bitmap.getHeight() / 3);
 }
 
 void Mario::loadContent() {
@@ -95,7 +92,7 @@ void Mario::update(ALLEGRO_EVENT event, InputManager input) {
     isObstacleOnBottom = isObstacleOnLeft = isObstacleOnRight = isObstacleOnTop = false;
 }
 void Mario::draw() {
-    al_draw_scaled_bitmap(image, currentFrame->left, currentFrame->top, currentFrame->width, currentFrame->height
+    al_draw_scaled_bitmap(bitmap.getImage(), currentFrame->left, currentFrame->top, currentFrame->width, currentFrame->height
                           , box->left, box->top, scaledWidth, scaledHeight, rightOrLeftFlag);
 }
 

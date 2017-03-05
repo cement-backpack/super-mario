@@ -5,20 +5,18 @@ Pipe::Pipe(PipeType type, const Position &pos)
 {
     switch (type) {
     case Pipe::Big:
-        image = al_load_bitmap("res/images/pipe-big.png");
+        bitmap.load("res/images/pipe-big.png");
         break;
     case Pipe::Medium:
-        image = al_load_bitmap("res/images/pipe-medium.png");
+        bitmap.load("res/images/pipe-medium.png");
         break;
     case Pipe::Small:
-        image = al_load_bitmap("res/images/pipe-small.png");
+        bitmap.load("res/images/pipe-small.png");
         break;
     }
     isCollidable = true;
-    imageWidth = al_get_bitmap_width(image);
-    imageHeight = al_get_bitmap_height(image);
-    scaledWidth = imageWidth * SCALE;
-    scaledHeight = imageHeight * SCALE;
+    scaledWidth = bitmap.getWidth() * SCALE;
+    scaledHeight = bitmap.getHeight() * SCALE;
     box = new Rectangle(position.x, position.y, scaledWidth, scaledHeight);
     objectType = GameObject::Pipe;
 }
@@ -28,7 +26,7 @@ void Pipe::update(ALLEGRO_EVENT event) {
 }
 
 void Pipe::draw() {
-     al_draw_scaled_bitmap(image, 0, 0, imageWidth, imageHeight, box->left, box->top, scaledWidth, scaledHeight, 0);
+     al_draw_scaled_bitmap(bitmap.getImage(), 0, 0, bitmap.getWidth(), bitmap.getHeight(), box->left, box->top, scaledWidth, scaledHeight, 0);
 }
 
 void Pipe::moveLeft() {

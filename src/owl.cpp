@@ -1,18 +1,15 @@
 #include "owl.h"
 
 Owl::Owl(const Position &pos)
-    : Enemy(pos)
+    : Enemy("res/images/owl.png", pos)
 {
-    image = al_load_bitmap("res/images/owl.png");
-    imageWidth = al_get_bitmap_width(image);
-    imageHeight = al_get_bitmap_height(image);
-    scaledWidth = imageWidth / 2 * SCALE;
-    scaledHeight = imageHeight * SCALE;
+    scaledWidth = bitmap.getWidth() / 2 * SCALE;
+    scaledHeight = bitmap.getHeight() * SCALE;
     box = new Rectangle(position.x, position.y, scaledWidth, scaledHeight);
     objectType = GameObject::Enemy;
 
     for (int i = 0; i < 2; i++)
-        walk[i] = new Rectangle(imageWidth / 2 * i, 0, imageWidth / 2, imageHeight);
+        walk[i] = new Rectangle(bitmap.getWidth() / 2 * i, 0, bitmap.getWidth() / 2, bitmap.getHeight());
 
     currentFrameNumber = 1;
     dir = Left;
@@ -38,8 +35,7 @@ void Owl::update(ALLEGRO_EVENT event) {
 }
 
 void Owl::draw() {
-    al_draw_scaled_bitmap(image, currentFrame->left, currentFrame->top, currentFrame->width, currentFrame->height
-                          , box->left, box->top, scaledWidth, scaledHeight, 0);
+    al_draw_scaled_bitmap(bitmap.getImage(), currentFrame->left, currentFrame->top, currentFrame->width, currentFrame->height, box->left, box->top, scaledWidth, scaledHeight, 0);
 }
 
 void Owl::moveLeft() {

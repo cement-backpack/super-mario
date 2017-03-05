@@ -1,18 +1,15 @@
 #include "turtle.h"
 
 Turtle::Turtle(const Position &pos)
-    : Enemy(pos)
+    : Enemy("res/images/turtle.png", pos)
 {
-    image = al_load_bitmap("res/images/turtle.png");
-    imageWidth = al_get_bitmap_width(image);
-    imageHeight = al_get_bitmap_height(image);
-    scaledWidth = imageWidth / 2 * SCALE;
-    scaledHeight = imageHeight / 3 * SCALE;
+    scaledWidth = bitmap.getWidth() / 2 * SCALE;
+    scaledHeight = bitmap.getHeight() / 3 * SCALE;
     box = new Rectangle(position.x, position.y, scaledWidth, scaledHeight);
     objectType = GameObject::Enemy;
 
     for (int i = 0; i < 2; i++)
-        walk[i] = new Rectangle(imageWidth / 2 * i, imageHeight / 3 * 2, imageWidth / 2, imageHeight / 3);
+        walk[i] = new Rectangle(bitmap.getWidth() / 2 * i, bitmap.getHeight() / 3 * 2, bitmap.getWidth() / 2, bitmap.getHeight() / 3);
 
     currentFrameNumber = 0;
     dir = Left;
@@ -38,8 +35,7 @@ void Turtle::update(ALLEGRO_EVENT event) {
 }
 
 void Turtle::draw() {
-    al_draw_scaled_bitmap(image, currentFrame->left, currentFrame->top, currentFrame->width, currentFrame->height
-                          , box->left, box->top, scaledWidth, scaledHeight, 0);
+    al_draw_scaled_bitmap(bitmap.getImage(), currentFrame->left, currentFrame->top, currentFrame->width, currentFrame->height, box->left, box->top, scaledWidth, scaledHeight, 0);
 }
 
 void Turtle::moveLeft() {
