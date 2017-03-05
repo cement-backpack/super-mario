@@ -13,8 +13,8 @@
 
 class GameScreen {
 private:
-    Mario *mario;
-    Map *map;
+    Mario mario;
+    Map map;
     float currentX = SCREEN_WIDTH;
 protected:
     InputManager input;

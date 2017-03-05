@@ -9,7 +9,7 @@ private:
     float y;
     float width, height;
 public:
-    Wall(std::pair<int, int> xRange, int y);
+    Wall(const std::pair<int, int> &xRange, int y);
     void update(ALLEGRO_EVENT event);
     void draw();
     void moveLeft();

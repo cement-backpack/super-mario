@@ -6,7 +6,7 @@
 class Pipe : public GameObject {
 public:
     enum PipeType {Big, Medium, Small};
-    Pipe(PipeType type, Position *pos);
+    Pipe(PipeType type, const Position &pos);
     void update(ALLEGRO_EVENT event);
     void draw();
     void moveLeft();

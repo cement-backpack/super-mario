@@ -3,14 +3,16 @@
 
 #include "rectangle.h"
 #include "position.h"
-#include <ios>
+
 #include <allegro5/allegro.h>
+
+#include <utility>
 
 #define SCALE 2
 
 class GameObject {
 protected:
-    Position *position;
+    Position position;
     ALLEGRO_BITMAP *image;
     float imageWidth;
     float imageHeight;
@@ -38,7 +40,7 @@ public:
     bool isCollidable = false;
     std::pair<float, float> velocity;
 
-    GameObject();
+    GameObject(const Position &pos);
 
     virtual void loadContent();
     virtual void unloadContect();

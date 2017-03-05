@@ -1,6 +1,8 @@
 #include "pipe.h"
 
-Pipe::Pipe(PipeType type, Position *pos) : type(type) {
+Pipe::Pipe(PipeType type, const Position &pos)
+    : GameObject(pos), type(type)
+{
     switch (type) {
     case Pipe::Big:
         image = al_load_bitmap("res/images/pipe-big.png");
@@ -12,13 +14,12 @@ Pipe::Pipe(PipeType type, Position *pos) : type(type) {
         image = al_load_bitmap("res/images/pipe-small.png");
         break;
     }
-    position = pos;
     isCollidable = true;
     imageWidth = al_get_bitmap_width(image);
     imageHeight = al_get_bitmap_height(image);
     scaledWidth = imageWidth * SCALE;
     scaledHeight = imageHeight * SCALE;
-    box = new Rectangle(position->x, position->y, scaledWidth, scaledHeight);
+    box = new Rectangle(position.x, position.y, scaledWidth, scaledHeight);
     objectType = GameObject::Pipe;
 }
 

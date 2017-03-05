@@ -1,10 +1,12 @@
 #include "maploader.h"
 
+#include <fstream>
+
 MapLoader::MapLoader() {
 
 }
 
-void MapLoader::loadMap(std::string mapID) {
+void MapLoader::loadMap(const std::string &mapID) {
     std::string mapPath = "res/maps/map" + mapID + ".map";
     std::ifstream openedMap(mapPath.c_str());
 

@@ -5,7 +5,7 @@
 
 class Enemy : public GameObject {
 public:
-    Enemy();
+    Enemy(const Position &pos);
     virtual void update(ALLEGRO_EVENT event);
     virtual void draw();
     virtual void moveLeft();

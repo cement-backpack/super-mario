@@ -34,35 +34,37 @@ int main() {
 
     bool done = false;
 
-    InputManager input;
-    SoundManager sound;
-    GameScreen game(&sound);
+    {
+        InputManager input;
+        SoundManager sound;
+        GameScreen game(&sound);
 
-    sound.playTheme();
+        sound.playTheme();
 
-    al_start_timer(timer);
+        al_start_timer(timer);
 
-    while (!done) {
-        ALLEGRO_EVENT event;
-        al_wait_for_event(eventQueue, &event);
+        while (!done) {
+            ALLEGRO_EVENT event;
+            al_wait_for_event(eventQueue, &event);
 
-        if (input.isKeyPressed(event, ALLEGRO_KEY_ESCAPE) || event.type == ALLEGRO_EVENT_DISPLAY_CLOSE)
-            done = true;
+            if (input.isKeyPressed(event, ALLEGRO_KEY_ESCAPE) || event.type == ALLEGRO_EVENT_DISPLAY_CLOSE)
+                done = true;
 
-        if (event.type == ALLEGRO_EVENT_TIMER) {
-            if (event.timer.source == timer) {
-                game.checkCollides();
-                al_clear_to_color(al_map_rgb(107, 140, 255));
-                game.draw();
-                al_flip_display();
+            if (event.type == ALLEGRO_EVENT_TIMER) {
+                if (event.timer.source == timer) {
+                    game.checkCollides();
+                    al_clear_to_color(al_map_rgb(107, 140, 255));
+                    game.draw();
+                    al_flip_display();
+                }
             }
+            game.update(event);
         }
-        game.update(event);
     }
 
-    al_destroy_display(display);
     al_destroy_timer(timer);
     al_destroy_event_queue(eventQueue);
+    al_destroy_display(display);
 
     return 0;
 }

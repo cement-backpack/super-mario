@@ -1,6 +1,8 @@
 #include "bush.h"
 
-Bush::Bush(BushType type, Position *pos) : type(type) {
+Bush::Bush(BushType type, const Position &pos)
+    : GameObject(pos), type(type)
+{
     switch (type) {
     case Bush::Big:
         image = al_load_bitmap("res/images/bush-big.png");
@@ -16,8 +18,7 @@ Bush::Bush(BushType type, Position *pos) : type(type) {
     imageHeight = al_get_bitmap_height(image);
     scaledWidth = imageWidth * SCALE;
     scaledHeight = imageHeight * SCALE;
-    position = pos;
-    box = new Rectangle(position->x, position->y, scaledWidth, scaledHeight);
+    box = new Rectangle(position.x, position.y, scaledWidth, scaledHeight);
     objectType = GameObject::Bush;
 }
 

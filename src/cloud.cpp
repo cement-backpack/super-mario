@@ -1,6 +1,8 @@
 #include "cloud.h"
 
-Cloud::Cloud(CloudType type, Position *pos) : type(type) {
+Cloud::Cloud(CloudType type, const Position &pos)
+    : GameObject(pos), type(type)
+{
     switch (type) {
     case Cloud::Big:
         image = al_load_bitmap("res/images/cloud-big.png");
@@ -16,8 +18,7 @@ Cloud::Cloud(CloudType type, Position *pos) : type(type) {
     imageHeight = al_get_bitmap_height(image);
     scaledWidth = imageWidth * SCALE;
     scaledHeight = imageHeight * SCALE;
-    position = pos;
-    box = new Rectangle(position->x, position->y, scaledWidth, scaledHeight);
+    box = new Rectangle(position.x, position.y, scaledWidth, scaledHeight);
     objectType = GameObject::Cloud;
 }
 

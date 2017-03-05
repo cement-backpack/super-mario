@@ -1,6 +1,7 @@
 #include "enemy.h"
 
-Enemy::Enemy()
+Enemy::Enemy(const Position &pos)
+    : GameObject(pos)
 {
 }
 

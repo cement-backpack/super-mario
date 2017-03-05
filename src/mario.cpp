@@ -14,7 +14,9 @@ void Mario::initMarioRects() {
         walk[i] = new Rectangle(imageWidth / 3 * i, imageHeight / 3 * 2, imageWidth / 3, imageHeight / 3);
 }
 
-Mario::Mario(SoundManager *sound) {
+Mario::Mario(SoundManager *sound)
+    : GameObject(Position(32 * SCALE, 32 * SCALE))
+{
     image = al_load_bitmap("res/images/mario-small.png");
     type = Mario::Small;
     initMarioRects();
@@ -22,8 +24,7 @@ Mario::Mario(SoundManager *sound) {
     jumpSpeed = 9;
     moveSpeed = 5;
     gravity = 0.5;
-    position = new Position(32 * SCALE, 184 * SCALE);
-    box = new Rectangle(position->x, position->y, scaledWidth, scaledHeight);
+    box = new Rectangle(position.x, position.y, scaledWidth, scaledHeight);
     objectType = GameObject::Mario;
     isCollidable = true;
 
@@ -86,10 +87,10 @@ void Mario::update(ALLEGRO_EVENT event, InputManager input) {
     if (activeGravity)
         velocity.second += gravity;
 
-    position->x += velocity.first;
-    position->y += velocity.second;
+    position.x += velocity.first;
+    position.y += velocity.second;
 
-    box->update(position->x, position->y);
+    box->update(position.x, position.y);
 
     isObstacleOnBottom = isObstacleOnLeft = isObstacleOnRight = isObstacleOnTop = false;
 }

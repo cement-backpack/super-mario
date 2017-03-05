@@ -1,7 +1,8 @@
 #include "gameobject.h"
 
-GameObject::GameObject() {
-
+GameObject::GameObject(const Position &pos)
+    : position(pos)
+{
 }
 
 void GameObject::loadContent() {

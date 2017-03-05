@@ -1,13 +1,14 @@
 #include "owl.h"
 
-Owl::Owl(Position *pos) {
+Owl::Owl(const Position &pos)
+    : Enemy(pos)
+{
     image = al_load_bitmap("res/images/owl.png");
     imageWidth = al_get_bitmap_width(image);
     imageHeight = al_get_bitmap_height(image);
     scaledWidth = imageWidth / 2 * SCALE;
     scaledHeight = imageHeight * SCALE;
-    position = pos;
-    box = new Rectangle(position->x, position->y, scaledWidth, scaledHeight);
+    box = new Rectangle(position.x, position.y, scaledWidth, scaledHeight);
     objectType = GameObject::Enemy;
 
     for (int i = 0; i < 2; i++)
@@ -18,7 +19,7 @@ Owl::Owl(Position *pos) {
     currentFrame = walk[1];
     moveSpeed = 1;
     gravity = 0.5;
-    box = new Rectangle(position->x, position->y, scaledWidth, scaledHeight);
+    box = new Rectangle(position.x, position.y, scaledWidth, scaledHeight);
     isCollidable = true;
 }
 

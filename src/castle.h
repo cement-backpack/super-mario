@@ -5,7 +5,7 @@
 
 class Castle : public GameObject {
 public:
-    Castle(Position *pos);
+    Castle(const Position &pos);
     void update(ALLEGRO_EVENT event);
     void draw();
     void moveLeft();

@@ -26,8 +26,9 @@ private:
 
     void initObjectNames();
 public:
-    std::vector<GameObject*> *objects;
-    Map(std::string mapID);
+    std::vector<GameObject*> objects;
+    Map(const std::string &mapID);
+    virtual ~Map();
 
     void update(ALLEGRO_EVENT event);
     void draw();

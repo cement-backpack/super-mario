@@ -33,10 +33,9 @@ void Map::initObjectNames() {
     objectNames[29] = "turtle";
 }
 
-Map::Map(std::string mapID) {
+Map::Map(const std::string &mapID) {
     initObjectNames();
     loader.loadMap(mapID);
-    objects = new std::vector<GameObject*>;
     for (int i = 0; i < loader.objects.size(); i++) {
         float x, y;
         std::pair<float, float> xRange;
@@ -68,83 +67,91 @@ Map::Map(std::string mapID) {
         xRange.second *= SCALE;
 
         if (loader.objects[i].first == objectNames[0]) {
-            objects->push_back(new Hill(Hill::Big, new Position(x, y)));
+            objects.push_back(new Hill(Hill::Big, Position(x, y)));
         } else if (loader.objects[i].first == objectNames[1]) {
-            objects->push_back(new Hill(Hill::Small, new Position(x, y)));
+            objects.push_back(new Hill(Hill::Small, Position(x, y)));
         } else if (loader.objects[i].first == objectNames[2]) {
-            objects->push_back(new Bush(Bush::Big, new Position(x, y)));
+            objects.push_back(new Bush(Bush::Big, Position(x, y)));
         } else if (loader.objects[i].first == objectNames[3]) {
-            objects->push_back(new Bush(Bush::Medium, new Position(x, y)));
+            objects.push_back(new Bush(Bush::Medium, Position(x, y)));
         } else if (loader.objects[i].first == objectNames[4]) {
-            objects->push_back(new Bush(Bush::Small, new Position(x, y)));
+            objects.push_back(new Bush(Bush::Small, Position(x, y)));
         } else if (loader.objects[i].first == objectNames[5]) {
-            objects->push_back(new Wall(xRange, y));
+            objects.push_back(new Wall(xRange, y));
         } else if (loader.objects[i].first == objectNames[6]) {
-            objects->push_back(new Cloud(Cloud::Big, new Position(x, y)));
+            objects.push_back(new Cloud(Cloud::Big, Position(x, y)));
         } else if (loader.objects[i].first == objectNames[7]) {
-            objects->push_back(new Cloud(Cloud::Medium, new Position(x, y)));
+            objects.push_back(new Cloud(Cloud::Medium, Position(x, y)));
         } else if (loader.objects[i].first == objectNames[8]) {
-            objects->push_back(new Cloud(Cloud::Small, new Position(x, y)));
+            objects.push_back(new Cloud(Cloud::Small, Position(x, y)));
         } else if (loader.objects[i].first == objectNames[9]) {
-            objects->push_back(new Castle(new Position(x, y)));
+            objects.push_back(new Castle(Position(x, y)));
         } else if (loader.objects[i].first == objectNames[10]) {
-            objects->push_back(new Pipe(Pipe::Big, new Position(x, y)));
+            objects.push_back(new Pipe(Pipe::Big, Position(x, y)));
         } else if (loader.objects[i].first == objectNames[11]) {
-            objects->push_back(new Pipe(Pipe::Medium, new Position(x, y)));
+            objects.push_back(new Pipe(Pipe::Medium, Position(x, y)));
         } else if (loader.objects[i].first == objectNames[12]) {
-            objects->push_back(new Pipe(Pipe::Small, new Position(x, y)));
+            objects.push_back(new Pipe(Pipe::Small, Position(x, y)));
         } else if (loader.objects[i].first == objectNames[13]) {
-            objects->push_back(new SecretBox(SecretBox::Coin, new Position(x, y)));
+            objects.push_back(new SecretBox(SecretBox::Coin, Position(x, y)));
         } else if (loader.objects[i].first == objectNames[14]) {
-            objects->push_back(new SecretBox(SecretBox::Mushroom, new Position(x, y)));
+            objects.push_back(new SecretBox(SecretBox::Mushroom, Position(x, y)));
         } else if (loader.objects[i].first == objectNames[15]) {
-            objects->push_back(new SecretBox(SecretBox::Hidden, new Position(x, y)));
+            objects.push_back(new SecretBox(SecretBox::Hidden, Position(x, y)));
         } else if (loader.objects[i].first == objectNames[16]) {
-            objects->push_back(new SecretBox(SecretBox::Brick_Coin, new Position(x, y)));
+            objects.push_back(new SecretBox(SecretBox::Brick_Coin, Position(x, y)));
         } else if (loader.objects[i].first == objectNames[17]) {
-            objects->push_back(new SecretBox(SecretBox::Brick_Star, new Position(x, y)));
+            objects.push_back(new SecretBox(SecretBox::Brick_Star, Position(x, y)));
         } else if (loader.objects[i].first == objectNames[18]) {
-            objects->push_back(new Brick(new Position(x, y)));
+            objects.push_back(new Brick(Position(x, y)));
         } else if (loader.objects[i].first == objectNames[19]) {
-            objects->push_back(new Block(1, new Position(x, y)));
+            objects.push_back(new Block(1, Position(x, y)));
         } else if (loader.objects[i].first == objectNames[20]) {
-            objects->push_back(new Block(2, new Position(x, y)));
+            objects.push_back(new Block(2, Position(x, y)));
         } else if (loader.objects[i].first == objectNames[21]) {
-            objects->push_back(new Block(3, new Position(x, y)));
+            objects.push_back(new Block(3, Position(x, y)));
         } else if (loader.objects[i].first == objectNames[22]) {
-            objects->push_back(new Block(4, new Position(x, y)));
+            objects.push_back(new Block(4, Position(x, y)));
         } else if (loader.objects[i].first == objectNames[23]) {
-            objects->push_back(new Block(5, new Position(x, y)));
+            objects.push_back(new Block(5, Position(x, y)));
         } else if (loader.objects[i].first == objectNames[24]) {
-            objects->push_back(new Block(6, new Position(x, y)));
+            objects.push_back(new Block(6, Position(x, y)));
         } else if (loader.objects[i].first == objectNames[25]) {
-            objects->push_back(new Block(7, new Position(x, y)));
+            objects.push_back(new Block(7, Position(x, y)));
         } else if (loader.objects[i].first == objectNames[26]) {
-            objects->push_back(new Block(8, new Position(x, y)));
+            objects.push_back(new Block(8, Position(x, y)));
         } else if (loader.objects[i].first == objectNames[27]) {
-            objects->push_back(new Flag(new Position(x, y)));
+            objects.push_back(new Flag(Position(x, y)));
         } else if (loader.objects[i].first == objectNames[28]) {
-            objects->push_back(new Owl(new Position(x, y)));
+            objects.push_back(new Owl(Position(x, y)));
         }/* else if (loader.objects[i].first == objectNames[29]) {
-            objects->push_back(new Turtle(new Position(x, y)));
+            objects.push_back(new Turtle(Position(x, y)));
         }*/
     }
 }
 
+Map::~Map()
+{
+    for (GameObject *go : objects) {
+        delete go;
+    }
+    objects.clear();
+}
+
 void Map::update(ALLEGRO_EVENT event) {
-    for (std::vector<GameObject*>::iterator itr = objects->begin(); itr != objects->end(); itr++) {
+    for (std::vector<GameObject*>::iterator itr = objects.begin(); itr != objects.end(); itr++) {
         (*itr)->update(event);
     }
 }
 
 void Map::draw() {
-    for (std::vector<GameObject*>::iterator itr = objects->begin(); itr != objects->end(); itr++) {
+    for (std::vector<GameObject*>::iterator itr = objects.begin(); itr != objects.end(); itr++) {
         (*itr)->draw();
     }
 }
 
 void Map::moveMapToLeft() {
-    for (std::vector<GameObject*>::iterator itr = objects->begin(); itr != objects->end(); itr++) {
+    for (std::vector<GameObject*>::iterator itr = objects.begin(); itr != objects.end(); itr++) {
         (*itr)->moveLeft();
     }
 }

@@ -1,6 +1,8 @@
 #include "wall.h"
 
-Wall::Wall(std::pair<int, int> xRange, int y): xRange(xRange), y(y) {
+Wall::Wall(const std::pair<int, int> &xRange, int y)
+    : GameObject(Position(0, 0)), xRange(xRange), y(y)
+{
     image = al_load_bitmap("res/images/wall.png");
     imageWidth = al_get_bitmap_width(image);
     imageHeight = al_get_bitmap_height(image);

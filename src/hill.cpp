@@ -1,6 +1,8 @@
 #include "hill.h"
 
-Hill::Hill(HillType type, Position *pos) : type(type) {
+Hill::Hill(HillType type, const Position &pos)
+    : GameObject(pos), type(type)
+{
     switch (type) {
     case Hill::Big:
         image = al_load_bitmap("res/images/hill-big.png");
@@ -13,8 +15,7 @@ Hill::Hill(HillType type, Position *pos) : type(type) {
     imageHeight = al_get_bitmap_height(image);
     scaledWidth = imageWidth * SCALE;
     scaledHeight = imageHeight * SCALE;
-    position = pos;
-    box = new Rectangle(position->x, position->y, scaledWidth, scaledHeight);
+    box = new Rectangle(position.x, position.y, scaledWidth, scaledHeight);
     objectType = GameObject::Hill;
 }
 

@@ -1,13 +1,14 @@
 #include "turtle.h"
 
-Turtle::Turtle(Position *pos) {
+Turtle::Turtle(const Position &pos)
+    : Enemy(pos)
+{
     image = al_load_bitmap("res/images/turtle.png");
     imageWidth = al_get_bitmap_width(image);
     imageHeight = al_get_bitmap_height(image);
     scaledWidth = imageWidth / 2 * SCALE;
     scaledHeight = imageHeight / 3 * SCALE;
-    position = pos;
-    box = new Rectangle(position->x, position->y, scaledWidth, scaledHeight);
+    box = new Rectangle(position.x, position.y, scaledWidth, scaledHeight);
     objectType = GameObject::Enemy;
 
     for (int i = 0; i < 2; i++)
@@ -18,7 +19,7 @@ Turtle::Turtle(Position *pos) {
     currentFrame = walk[0];
     moveSpeed = 1;
     gravity = 0.5;
-    box = new Rectangle(position->x, position->y, scaledWidth, scaledHeight);
+    box = new Rectangle(position.x, position.y, scaledWidth, scaledHeight);
     isCollidable = true;
 }
 

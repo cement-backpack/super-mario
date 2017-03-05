@@ -1,13 +1,14 @@
 #include "flag.h"
 
-Flag::Flag(Position *pos) {
+Flag::Flag(const Position &pos)
+    : GameObject(pos)
+{
     image = al_load_bitmap("res/images/flag.png");
     imageWidth = al_get_bitmap_width(image);
     imageHeight = al_get_bitmap_height(image);
     scaledWidth = imageWidth * SCALE;
     scaledHeight = imageHeight * SCALE;
-    position = pos;
-    box = new Rectangle(position->x, position->y, scaledWidth, scaledHeight);
+    box = new Rectangle(position.x, position.y, scaledWidth, scaledHeight);
     objectType = GameObject::Bush;
 }
 
