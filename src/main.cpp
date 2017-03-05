@@ -8,14 +8,14 @@ int main() {
     const float FPS = 60.0f;
 
     if (!al_init()) {
-        al_show_native_message_box(NULL, "Error", "Error", "Cannot initialize Allegro", NULL, NULL);
+        al_show_native_message_box(NULL, "Error", "Error", "Cannot initialize Allegro", NULL, ALLEGRO_MESSAGEBOX_ERROR);
         return -1;
     }
 
     ALLEGRO_DISPLAY *display = al_create_display(SCREEN_WIDTH, SCREEN_HEIGHT);
 
     if (!display) {
-        al_show_native_message_box(NULL, "Error", "Error", "Cannot create display", NULL, NULL);
+        al_show_native_message_box(NULL, "Error", "Error", "Cannot create display", NULL, ALLEGRO_MESSAGEBOX_ERROR);
         return -1;
     }
 
