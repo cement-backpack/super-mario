@@ -3,17 +3,20 @@
 This project is the final project of Course **Advanced Programming**. I wrote this game using **Allegro** library in the 2nd semester.
 
 ### Install
-Before running the game, you need to install [**Qt 5**](https://www.qt.io/download-open-source/) and [**Allegro 5**](https://wiki.allegro.cc/index.php?title=Getting_Started#Installing_Allegro). Click on the links or use your package manager to install them. Then:
+Before running the game, you need to install [**CMake**](https://cmake.org/) and [**Allegro 5**](http://liballeg.org/). Click on the links or use your package manager to install them. Then:
 
 ```bash
 git clone https://github.com/alirezaomidi/SuperMario-Allegro-Cpp
-cd SuperMario-Allegro-Cpp/
-qmake && make
+cd SuperMario-Allegro-Cpp
+mkdir build
+cd build
+cmake ..
+make
 ```
 
 ### Running
 ```bash
-build/Mario-Allegro
+./build/Mario-Allegro
 ```
 
 ![Super Mario](screenshot-1.png)
