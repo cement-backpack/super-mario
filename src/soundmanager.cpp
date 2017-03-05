@@ -3,10 +3,10 @@
 SoundManager::SoundManager() {
     al_reserve_samples(4);
 
-    theme = al_load_sample("res/sounds/themes/overworld.wav");
-    jump_small = al_load_sample("res/sounds/sounds/jump-small.wav");
-    jump_big = al_load_sample("res/sounds/sounds/jump-big.wav");
-    die = al_load_sample("res/sounds/sounds/die.wav");
+    theme = al_load_sample("res/sounds/themes/overworld.ogg");
+    jump_small = al_load_sample("res/sounds/sounds/jump-small.ogg");
+    jump_big = al_load_sample("res/sounds/sounds/jump-big.ogg");
+    die = al_load_sample("res/sounds/sounds/die.ogg");
 }
 
 void SoundManager::playTheme() {
