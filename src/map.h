@@ -16,15 +16,15 @@
 #include "flag.h"
 #include "owl.h"
 #include "turtle.h"
+
 #include <string>
+#include <vector>
 
 class Map {
 private:
     MapLoader loader;
     const static int numOfObjects = 30;
-    std::string objectNames[numOfObjects];
 
-    void initObjectNames();
 public:
     std::vector<GameObject*> objects;
     Map(const std::string &mapID);

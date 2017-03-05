@@ -1,58 +1,25 @@
 #include "map.h"
 
-void Map::initObjectNames() {
-    objectNames[0] = "hill-big";
-    objectNames[1] = "hill-small";
-    objectNames[2] = "bush-big";
-    objectNames[3] = "bush-medium";
-    objectNames[4] = "bush-small";
-    objectNames[5] = "wall";
-    objectNames[6] = "cloud-big";
-    objectNames[7] = "cloud-medium";
-    objectNames[8] = "cloud-small";
-    objectNames[9] = "castle";
-    objectNames[10] = "pipe-big";
-    objectNames[11] = "pipe-medium";
-    objectNames[12] = "pipe-small";
-    objectNames[13] = "secret-box-coin";
-    objectNames[14] = "secret-box-mushroom";
-    objectNames[15] = "hidden-secret-box";
-    objectNames[16] = "brick-secret-box-coin";
-    objectNames[17] = "brick-secret-box-star";
-    objectNames[18] = "brick";
-    objectNames[19] = "block-1";
-    objectNames[20] = "block-2";
-    objectNames[21] = "block-3";
-    objectNames[22] = "block-4";
-    objectNames[23] = "block-5";
-    objectNames[24] = "block-6";
-    objectNames[25] = "block-7";
-    objectNames[26] = "block-8";
-    objectNames[27] = "flag";
-    objectNames[28] = "owl";
-    objectNames[29] = "turtle";
-}
-
 Map::Map(const std::string &mapID) {
-    initObjectNames();
     loader.loadMap(mapID);
-    for (int i = 0; i < loader.objects.size(); i++) {
+
+    for (const std::pair<std::string, std::string> &object : loader.objects) {
         float x, y;
         std::pair<float, float> xRange;
         std::string xString, yString;
         bool isX = true;
-        for (int j = 0; j < loader.objects[i].second.length(); j++) {
-            if (loader.objects[i].second[j] == ',') {
+        for (int j = 0; j < object.second.length(); j++) {
+            if (object.second[j] == ',') {
                 isX = false;
                 continue;
             }
             if (isX)
-                xString += loader.objects[i].second[j];
+                xString += object.second[j];
             else
-                yString += loader.objects[i].second[j];
+                yString += object.second[j];
         }
 
-        if (loader.objects[i].first != "wall") {
+        if (object.first != "wall") {
             x = atof(xString.c_str());
         } else {
             int dashPos = xString.find('-');
@@ -66,65 +33,65 @@ Map::Map(const std::string &mapID) {
         xRange.first *= SCALE;
         xRange.second *= SCALE;
 
-        if (loader.objects[i].first == objectNames[0]) {
+        if (object.first == "hill-big") {
             objects.push_back(new Hill(Hill::Big, Position(x, y)));
-        } else if (loader.objects[i].first == objectNames[1]) {
+        } else if (object.first == "hill-small") {
             objects.push_back(new Hill(Hill::Small, Position(x, y)));
-        } else if (loader.objects[i].first == objectNames[2]) {
+        } else if (object.first == "bush-big") {
             objects.push_back(new Bush(Bush::Big, Position(x, y)));
-        } else if (loader.objects[i].first == objectNames[3]) {
+        } else if (object.first == "bush-medium") {
             objects.push_back(new Bush(Bush::Medium, Position(x, y)));
-        } else if (loader.objects[i].first == objectNames[4]) {
+        } else if (object.first == "bush-small") {
             objects.push_back(new Bush(Bush::Small, Position(x, y)));
-        } else if (loader.objects[i].first == objectNames[5]) {
+        } else if (object.first == "wall") {
             objects.push_back(new Wall(xRange, y));
-        } else if (loader.objects[i].first == objectNames[6]) {
+        } else if (object.first == "cloud-big") {
             objects.push_back(new Cloud(Cloud::Big, Position(x, y)));
-        } else if (loader.objects[i].first == objectNames[7]) {
+        } else if (object.first == "cloud-medium") {
             objects.push_back(new Cloud(Cloud::Medium, Position(x, y)));
-        } else if (loader.objects[i].first == objectNames[8]) {
+        } else if (object.first == "cloud-small") {
             objects.push_back(new Cloud(Cloud::Small, Position(x, y)));
-        } else if (loader.objects[i].first == objectNames[9]) {
+        } else if (object.first == "castle") {
             objects.push_back(new Castle(Position(x, y)));
-        } else if (loader.objects[i].first == objectNames[10]) {
+        } else if (object.first == "pipe-big") {
             objects.push_back(new Pipe(Pipe::Big, Position(x, y)));
-        } else if (loader.objects[i].first == objectNames[11]) {
+        } else if (object.first == "pipe-medium") {
             objects.push_back(new Pipe(Pipe::Medium, Position(x, y)));
-        } else if (loader.objects[i].first == objectNames[12]) {
+        } else if (object.first == "pipe-small") {
             objects.push_back(new Pipe(Pipe::Small, Position(x, y)));
-        } else if (loader.objects[i].first == objectNames[13]) {
+        } else if (object.first == "secret-box-coin") {
             objects.push_back(new SecretBox(SecretBox::Coin, Position(x, y)));
-        } else if (loader.objects[i].first == objectNames[14]) {
+        } else if (object.first == "secret-box-mushroom") {
             objects.push_back(new SecretBox(SecretBox::Mushroom, Position(x, y)));
-        } else if (loader.objects[i].first == objectNames[15]) {
+        } else if (object.first == "hidden-secret-box") {
             objects.push_back(new SecretBox(SecretBox::Hidden, Position(x, y)));
-        } else if (loader.objects[i].first == objectNames[16]) {
+        } else if (object.first == "brick-secret-box-coin") {
             objects.push_back(new SecretBox(SecretBox::Brick_Coin, Position(x, y)));
-        } else if (loader.objects[i].first == objectNames[17]) {
+        } else if (object.first == "brick-secret-box-star") {
             objects.push_back(new SecretBox(SecretBox::Brick_Star, Position(x, y)));
-        } else if (loader.objects[i].first == objectNames[18]) {
+        } else if (object.first == "brick") {
             objects.push_back(new Brick(Position(x, y)));
-        } else if (loader.objects[i].first == objectNames[19]) {
+        } else if (object.first == "block-1") {
             objects.push_back(new Block(1, Position(x, y)));
-        } else if (loader.objects[i].first == objectNames[20]) {
+        } else if (object.first == "block-2") {
             objects.push_back(new Block(2, Position(x, y)));
-        } else if (loader.objects[i].first == objectNames[21]) {
+        } else if (object.first == "block-3") {
             objects.push_back(new Block(3, Position(x, y)));
-        } else if (loader.objects[i].first == objectNames[22]) {
+        } else if (object.first == "block-4") {
             objects.push_back(new Block(4, Position(x, y)));
-        } else if (loader.objects[i].first == objectNames[23]) {
+        } else if (object.first == "block-5") {
             objects.push_back(new Block(5, Position(x, y)));
-        } else if (loader.objects[i].first == objectNames[24]) {
+        } else if (object.first == "block-6") {
             objects.push_back(new Block(6, Position(x, y)));
-        } else if (loader.objects[i].first == objectNames[25]) {
+        } else if (object.first == "block-7") {
             objects.push_back(new Block(7, Position(x, y)));
-        } else if (loader.objects[i].first == objectNames[26]) {
+        } else if (object.first == "block-8") {
             objects.push_back(new Block(8, Position(x, y)));
-        } else if (loader.objects[i].first == objectNames[27]) {
+        } else if (object.first == "flag") {
             objects.push_back(new Flag(Position(x, y)));
-        } else if (loader.objects[i].first == objectNames[28]) {
+        } else if (object.first == "owl") {
             objects.push_back(new Owl(Position(x, y)));
-        }/* else if (loader.objects[i].first == objectNames[29]) {
+        }/* else if (object.first == "turtle") {
             objects.push_back(new Turtle(Position(x, y)));
         }*/
     }
@@ -135,6 +102,7 @@ Map::~Map()
     for (GameObject *go : objects) {
         delete go;
     }
+
     objects.clear();
 }
 
