@@ -34,65 +34,65 @@ Map::Map(const std::string &mapID) {
         xRange.second *= SCALE;
 
         if (object.first == "hill-big") {
-            objects.push_back(new Hill(Hill::Big, Position(x, y)));
+            objects.push_back(new Hill(Hill::Big, Point(x, y)));
         } else if (object.first == "hill-small") {
-            objects.push_back(new Hill(Hill::Small, Position(x, y)));
+            objects.push_back(new Hill(Hill::Small, Point(x, y)));
         } else if (object.first == "bush-big") {
-            objects.push_back(new Bush(Bush::Big, Position(x, y)));
+            objects.push_back(new Bush(Bush::Big, Point(x, y)));
         } else if (object.first == "bush-medium") {
-            objects.push_back(new Bush(Bush::Medium, Position(x, y)));
+            objects.push_back(new Bush(Bush::Medium, Point(x, y)));
         } else if (object.first == "bush-small") {
-            objects.push_back(new Bush(Bush::Small, Position(x, y)));
+            objects.push_back(new Bush(Bush::Small, Point(x, y)));
         } else if (object.first == "wall") {
             objects.push_back(new Wall(xRange, y));
         } else if (object.first == "cloud-big") {
-            objects.push_back(new Cloud(Cloud::Big, Position(x, y)));
+            objects.push_back(new Cloud(Cloud::Big, Point(x, y)));
         } else if (object.first == "cloud-medium") {
-            objects.push_back(new Cloud(Cloud::Medium, Position(x, y)));
+            objects.push_back(new Cloud(Cloud::Medium, Point(x, y)));
         } else if (object.first == "cloud-small") {
-            objects.push_back(new Cloud(Cloud::Small, Position(x, y)));
+            objects.push_back(new Cloud(Cloud::Small, Point(x, y)));
         } else if (object.first == "castle") {
-            objects.push_back(new Castle(Position(x, y)));
+            objects.push_back(new Castle(Point(x, y)));
         } else if (object.first == "pipe-big") {
-            objects.push_back(new Pipe(Pipe::Big, Position(x, y)));
+            objects.push_back(new Pipe(Pipe::Big, Point(x, y)));
         } else if (object.first == "pipe-medium") {
-            objects.push_back(new Pipe(Pipe::Medium, Position(x, y)));
+            objects.push_back(new Pipe(Pipe::Medium, Point(x, y)));
         } else if (object.first == "pipe-small") {
-            objects.push_back(new Pipe(Pipe::Small, Position(x, y)));
+            objects.push_back(new Pipe(Pipe::Small, Point(x, y)));
         } else if (object.first == "secret-box-coin") {
-            objects.push_back(new SecretBox(SecretBox::Coin, Position(x, y)));
+            objects.push_back(new SecretBox(SecretBox::Coin, Point(x, y)));
         } else if (object.first == "secret-box-mushroom") {
-            objects.push_back(new SecretBox(SecretBox::Mushroom, Position(x, y)));
+            objects.push_back(new SecretBox(SecretBox::Mushroom, Point(x, y)));
         } else if (object.first == "hidden-secret-box") {
-            objects.push_back(new SecretBox(SecretBox::Hidden, Position(x, y)));
+            objects.push_back(new SecretBox(SecretBox::Hidden, Point(x, y)));
         } else if (object.first == "brick-secret-box-coin") {
-            objects.push_back(new SecretBox(SecretBox::Brick_Coin, Position(x, y)));
+            objects.push_back(new SecretBox(SecretBox::Brick_Coin, Point(x, y)));
         } else if (object.first == "brick-secret-box-star") {
-            objects.push_back(new SecretBox(SecretBox::Brick_Star, Position(x, y)));
+            objects.push_back(new SecretBox(SecretBox::Brick_Star, Point(x, y)));
         } else if (object.first == "brick") {
-            objects.push_back(new Brick(Position(x, y)));
+            objects.push_back(new Brick(Point(x, y)));
         } else if (object.first == "block-1") {
-            objects.push_back(new Block(1, Position(x, y)));
+            objects.push_back(new Block(1, Point(x, y)));
         } else if (object.first == "block-2") {
-            objects.push_back(new Block(2, Position(x, y)));
+            objects.push_back(new Block(2, Point(x, y)));
         } else if (object.first == "block-3") {
-            objects.push_back(new Block(3, Position(x, y)));
+            objects.push_back(new Block(3, Point(x, y)));
         } else if (object.first == "block-4") {
-            objects.push_back(new Block(4, Position(x, y)));
+            objects.push_back(new Block(4, Point(x, y)));
         } else if (object.first == "block-5") {
-            objects.push_back(new Block(5, Position(x, y)));
+            objects.push_back(new Block(5, Point(x, y)));
         } else if (object.first == "block-6") {
-            objects.push_back(new Block(6, Position(x, y)));
+            objects.push_back(new Block(6, Point(x, y)));
         } else if (object.first == "block-7") {
-            objects.push_back(new Block(7, Position(x, y)));
+            objects.push_back(new Block(7, Point(x, y)));
         } else if (object.first == "block-8") {
-            objects.push_back(new Block(8, Position(x, y)));
+            objects.push_back(new Block(8, Point(x, y)));
         } else if (object.first == "flag") {
-            objects.push_back(new Flag(Position(x, y)));
+            objects.push_back(new Flag(Point(x, y)));
         } else if (object.first == "owl") {
-            objects.push_back(new Owl(Position(x, y)));
+            objects.push_back(new Owl(Point(x, y)));
         }/* else if (object.first == "turtle") {
-            objects.push_back(new Turtle(Position(x, y)));
+            objects.push_back(new Turtle(Point(x, y)));
         }*/
     }
 }

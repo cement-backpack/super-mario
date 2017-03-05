@@ -6,7 +6,7 @@
 class Cloud : public GameObject {
 public:
     enum CloudType {Big, Medium, Small};
-    Cloud(CloudType type, const Position &pos);
+    Cloud(CloudType type, const Point &pos);
     void update(ALLEGRO_EVENT event);
     void draw();
     void moveLeft();

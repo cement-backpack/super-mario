@@ -1,6 +1,6 @@
 #include "owl.h"
 
-Owl::Owl(const Position &pos)
+Owl::Owl(const Point &pos)
     : Enemy("res/images/owl.png", pos)
 {
     scaledWidth = bitmap.getWidth() / 2 * SCALE;

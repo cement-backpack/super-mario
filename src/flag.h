@@ -5,7 +5,7 @@
 
 class Flag : public GameObject {
 public:
-    Flag(const Position &pos);
+    Flag(const Point &pos);
     void update(ALLEGRO_EVENT event);
     void draw();
     void moveLeft();

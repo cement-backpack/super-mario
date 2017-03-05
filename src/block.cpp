@@ -1,6 +1,6 @@
 #include "block.h"
 
-Block::Block(int size, const Position &pos)
+Block::Block(int size, const Point &pos)
     : GameObject("res/images/block.png", pos), size(size)
 {
     scaledWidth = bitmap.getWidth() * SCALE;

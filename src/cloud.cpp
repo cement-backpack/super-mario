@@ -1,6 +1,6 @@
 #include "cloud.h"
 
-Cloud::Cloud(CloudType type, const Position &pos)
+Cloud::Cloud(CloudType type, const Point &pos)
     : GameObject(pos), type(type)
 {
     switch (type) {

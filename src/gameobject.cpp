@@ -1,11 +1,11 @@
 #include "gameobject.h"
 
-GameObject::GameObject(const Position &pos)
+GameObject::GameObject(const Point &pos)
     : position(pos)
 {
 }
 
-GameObject::GameObject(const std::string &bitmapFilename, const Position &pos)
+GameObject::GameObject(const std::string &bitmapFilename, const Point &pos)
     : bitmap(bitmapFilename), position(pos)
 {
 }

@@ -1,6 +1,6 @@
 #include "castle.h"
 
-Castle::Castle(const Position &pos)
+Castle::Castle(const Point &pos)
     : GameObject("res/images/castle.png", pos)
 {
     scaledWidth = bitmap.getWidth() * SCALE;

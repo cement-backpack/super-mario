@@ -1,6 +1,6 @@
 #include "pipe.h"
 
-Pipe::Pipe(PipeType type, const Position &pos)
+Pipe::Pipe(PipeType type, const Point &pos)
     : GameObject(pos), type(type)
 {
     switch (type) {

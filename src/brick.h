@@ -5,7 +5,7 @@
 
 class Brick : public GameObject {
 public:
-    Brick(const Position &pos);
+    Brick(const Point &pos);
     void update(ALLEGRO_EVENT event);
     void draw();
     void moveLeft();

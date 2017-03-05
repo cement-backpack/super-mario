@@ -1,7 +1,7 @@
 #include "mario.h"
 
 Mario::Mario(SoundManager *sound)
-    : GameObject("res/images/mario-small.png", Position(32 * SCALE, 32 * SCALE))
+    : GameObject("res/images/mario-small.png", Point(32 * SCALE, 32 * SCALE))
 {
     type = Mario::Small;
 

@@ -1,6 +1,6 @@
 #include "secretbox.h"
 
-SecretBox::SecretBox(SecretBoxType type, const Position &pos)
+SecretBox::SecretBox(SecretBoxType type, const Point &pos)
     : GameObject(pos), type(type)
 {
     switch (type) {

@@ -3,7 +3,7 @@
 
 #include "maploader.h"
 #include "gameobject.h"
-#include "position.h"
+#include "point.h"
 #include "block.h"
 #include "bush.h"
 #include "castle.h"

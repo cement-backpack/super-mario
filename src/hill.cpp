@@ -1,6 +1,6 @@
 #include "hill.h"
 
-Hill::Hill(HillType type, const Position &pos)
+Hill::Hill(HillType type, const Point &pos)
     : GameObject(pos), type(type)
 {
     switch (type) {

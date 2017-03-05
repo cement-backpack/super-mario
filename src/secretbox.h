@@ -9,7 +9,7 @@ private:
 public:
     enum SecretBoxType {Coin, Mushroom, Brick_Coin, Brick_Star, Hidden};
     SecretBoxType type;
-    SecretBox(SecretBoxType type, const Position &pos);
+    SecretBox(SecretBoxType type, const Point &pos);
 
     void update(ALLEGRO_EVENT event);
     void draw();

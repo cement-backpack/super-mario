@@ -2,7 +2,7 @@
 #define GAMEOBJECT_H
 
 #include "bitmap.h"
-#include "position.h"
+#include "point.h"
 #include "rectangle.h"
 
 #include <allegro5/allegro.h>
@@ -11,7 +11,7 @@
 
 class GameObject {
 protected:
-    Position position;
+    Point position;
     Bitmap bitmap;
     float scaledWidth, scaledHeight;
     float gravity;
@@ -37,8 +37,8 @@ public:
     bool isCollidable = false;
     std::pair<float, float> velocity;
 
-    GameObject(const Position &pos);
-    GameObject(const std::string &bitmapFilename, const Position &pos);
+    GameObject(const Point &pos);
+    GameObject(const std::string &bitmapFilename, const Point &pos);
 
     virtual void update(ALLEGRO_EVENT event);
     virtual void draw();

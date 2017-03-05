@@ -1,6 +1,6 @@
 #include "turtle.h"
 
-Turtle::Turtle(const Position &pos)
+Turtle::Turtle(const Point &pos)
     : Enemy("res/images/turtle.png", pos)
 {
     scaledWidth = bitmap.getWidth() / 2 * SCALE;

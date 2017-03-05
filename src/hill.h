@@ -6,7 +6,7 @@
 class Hill : public GameObject {
 public:
     enum HillType {Big, Small};
-    Hill(HillType type, const Position &pos);
+    Hill(HillType type, const Point &pos);
     void update(ALLEGRO_EVENT event);
     void draw();
     void moveLeft();

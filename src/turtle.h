@@ -14,7 +14,7 @@ private:
     float currentFrameNumber = 0;
     bool isObstacleOnBottom = false, isObstacleOnRight = false, isObstacleOnLeft = false;
 public:
-    Turtle(const Position &pos);
+    Turtle(const Point &pos);
     void update(ALLEGRO_EVENT event);
     void draw();
     void moveLeft();

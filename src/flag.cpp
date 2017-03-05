@@ -1,6 +1,6 @@
 #include "flag.h"
 
-Flag::Flag(const Position &pos)
+Flag::Flag(const Point &pos)
     : GameObject("res/images/flag.png", pos)
 {
     scaledWidth = bitmap.getWidth() * SCALE;

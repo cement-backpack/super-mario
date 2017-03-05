@@ -1,7 +1,7 @@
 #include "wall.h"
 
 Wall::Wall(const std::pair<int, int> &xRange, int y)
-    : GameObject("res/images/wall.png", Position(0, 0)), xRange(xRange), y(y)
+    : GameObject("res/images/wall.png", Point(0, 0)), xRange(xRange), y(y)
 {
     scaledWidth = bitmap.getWidth() * SCALE;
     scaledHeight = bitmap.getHeight() * SCALE;

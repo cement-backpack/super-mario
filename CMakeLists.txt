@@ -26,7 +26,7 @@ add_executable (Mario-Allegro
 	src/mario.cpp
 	src/owl.cpp
 	src/pipe.cpp
-	src/position.cpp
+	src/point.cpp
 	src/rectangle.cpp
 	src/secretbox.cpp
 	src/soundmanager.cpp

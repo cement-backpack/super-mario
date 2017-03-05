@@ -1,6 +1,6 @@
 #include "brick.h"
 
-Brick::Brick(const Position &pos)
+Brick::Brick(const Point &pos)
     : GameObject("res/images/brick.png", pos)
 {
     scaledWidth = bitmap.getWidth() * SCALE;

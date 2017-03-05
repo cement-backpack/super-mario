@@ -6,7 +6,7 @@
 class Bush : public GameObject {
 public:
     enum BushType {Big, Medium, Small};
-    Bush(BushType type, const Position &pos);
+    Bush(BushType type, const Point &pos);
     void update(ALLEGRO_EVENT event);
     void draw();
     void moveLeft();

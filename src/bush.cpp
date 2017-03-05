@@ -1,6 +1,6 @@
 #include "bush.h"
 
-Bush::Bush(BushType type, const Position &pos)
+Bush::Bush(BushType type, const Point &pos)
     : GameObject(pos), type(type)
 {
     switch (type) {

@@ -1,6 +1,6 @@
 #include "enemy.h"
 
-Enemy::Enemy(const std::string &bitmapFilename, const Position &pos)
+Enemy::Enemy(const std::string &bitmapFilename, const Point &pos)
     : GameObject(bitmapFilename, pos)
 {
 }
