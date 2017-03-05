@@ -16,7 +16,6 @@ Owl::Owl(const Position &pos)
     currentFrame = walk[1];
     moveSpeed = 1;
     gravity = 0.5;
-    box = new Rectangle(position.x, position.y, scaledWidth, scaledHeight);
     isCollidable = true;
 }
 
