@@ -10,14 +10,6 @@ GameObject::GameObject(const std::string &bitmapFilename, const Position &pos)
 {
 }
 
-void GameObject::loadContent() {
-
-}
-
-void GameObject::unloadContect() {
-
-}
-
 void GameObject::update(ALLEGRO_EVENT event) {
 
 }

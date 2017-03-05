@@ -4,19 +4,7 @@ Mario::Mario(SoundManager *sound)
     : GameObject("res/images/mario-small.png", Position(32 * SCALE, 32 * SCALE))
 {
     type = Mario::Small;
-    initMarioRects();
-    currentFrame = stand;
-    jumpSpeed = 9;
-    moveSpeed = 5;
-    gravity = 0.5;
-    box = new Rectangle(position.x, position.y, scaledWidth, scaledHeight);
-    objectType = GameObject::Mario;
-    isCollidable = true;
 
-    this->sound = sound;
-}
-
-void Mario::initMarioRects() {
     scaledWidth = bitmap.getWidth() / 3 * SCALE;
     scaledHeight = bitmap.getHeight() / 3 * SCALE;
     stand = new Rectangle(bitmap.getWidth() / 3 * 2, bitmap.getHeight() / 3, bitmap.getWidth() / 3, bitmap.getHeight() / 3);
@@ -26,14 +14,16 @@ void Mario::initMarioRects() {
         hang[i] = new Rectangle(bitmap.getWidth() / 3 * (i + 1), 0, bitmap.getWidth() / 3, bitmap.getHeight() / 3);
     for (int i = 0; i < 3; i++)
         walk[i] = new Rectangle(bitmap.getWidth() / 3 * i, bitmap.getHeight() / 3 * 2, bitmap.getWidth() / 3, bitmap.getHeight() / 3);
-}
 
-void Mario::loadContent() {
+    currentFrame = stand;
+    jumpSpeed = 9;
+    moveSpeed = 5;
+    gravity = 0.5;
+    box = new Rectangle(position.x, position.y, scaledWidth, scaledHeight);
+    objectType = GameObject::Mario;
+    isCollidable = true;
 
-}
-
-void Mario::unloadContect() {
-
+    this->sound = sound;
 }
 
 void Mario::update(ALLEGRO_EVENT event, InputManager input) {

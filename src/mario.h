@@ -21,16 +21,12 @@ private:
     float currentFrameNumber = 0;
     bool isObstacleOnTop = false, isObstacleOnBottom = false, isObstacleOnRight = false, isObstacleOnLeft = false;
 
-    void initMarioRects();
-
 public:
     enum Direction {Up, Down, Left, Right};
     Direction dir;
 
     Mario(SoundManager *sound);
 
-    void loadContent();
-    void unloadContect();
     void update(ALLEGRO_EVENT event, InputManager input);
     void draw();
     bool haveCollideWith(GameObject *obj);

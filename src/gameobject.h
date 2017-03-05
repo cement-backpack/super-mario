@@ -40,8 +40,6 @@ public:
     GameObject(const Position &pos);
     GameObject(const std::string &bitmapFilename, const Position &pos);
 
-    virtual void loadContent();
-    virtual void unloadContect();
     virtual void update(ALLEGRO_EVENT event);
     virtual void draw();
     virtual bool haveCollideWith(GameObject *obj);

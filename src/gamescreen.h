@@ -21,8 +21,6 @@ protected:
 public:
     GameScreen(SoundManager *sound);
 
-    void loadContent();
-    void unloadContent();
     void update(ALLEGRO_EVENT event);
     void draw();
     void checkCollides();

@@ -6,14 +6,6 @@ GameScreen::GameScreen(SoundManager *sound)
 {
 }
 
-void GameScreen::loadContent() {
-
-}
-
-void GameScreen::unloadContent() {
-
-}
-
 void GameScreen::update(ALLEGRO_EVENT event) {
     map.update(event);
     mario.update(event, input);
