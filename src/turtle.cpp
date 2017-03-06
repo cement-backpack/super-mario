@@ -22,10 +22,10 @@ Turtle::Turtle(const Point &pos)
 void Turtle::update(ALLEGRO_EVENT event) {
     if (dir == Left) {
         if (!isObstacleOnLeft)
-            velocity.first = -moveSpeed;
+            velocity.x = -moveSpeed;
     } else {
         if (!isObstacleOnRight)
-            velocity.first = moveSpeed;
+            velocity.x = moveSpeed;
     }
     currentFrameNumber += frameChangeSpeed;
     if (currentFrameNumber >= 4)
@@ -34,9 +34,9 @@ void Turtle::update(ALLEGRO_EVENT event) {
 }
 
 void Turtle::draw() {
-    al_draw_scaled_bitmap(bitmap.getImage(), currentFrame->left, currentFrame->top, currentFrame->width, currentFrame->height, box->left, box->top, scaledWidth, scaledHeight, 0);
+    al_draw_scaled_bitmap(bitmap.getImage(), currentFrame->left(), currentFrame->top(), currentFrame->width(), currentFrame->height(), box->left(), box->top(), scaledWidth, scaledHeight, 0);
 }
 
 void Turtle::moveLeft() {
-    box->update(box->left - 5, box->top);
+    box->move(Point(box->left() - 5, box->top()));
 }

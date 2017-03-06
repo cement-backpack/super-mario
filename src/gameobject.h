@@ -35,7 +35,7 @@ public:
 
     Rectangle *box;
     bool isCollidable = false;
-    std::pair<float, float> velocity;
+    Point velocity;
 
     GameObject(const Point &pos);
     GameObject(const std::string &bitmapFilename, const Point &pos);

@@ -25,9 +25,9 @@ void Bush::update(ALLEGRO_EVENT event) {
 }
 
 void Bush::draw() {
-    al_draw_scaled_bitmap(bitmap.getImage(), 0, 0, bitmap.getWidth(), bitmap.getHeight(), box->left, box->top, scaledWidth, scaledHeight, 0);
+    al_draw_scaled_bitmap(bitmap.getImage(), 0, 0, bitmap.getWidth(), bitmap.getHeight(), box->left(), box->top(), scaledWidth, scaledHeight, 0);
 }
 
 void Bush::moveLeft() {
-    box->update(box->left - 5, box->top);
+    box->move(Point(box->left() - 5, box->top()));
 }

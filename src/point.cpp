@@ -5,7 +5,31 @@ Point::Point(float x, float y)
 {
 }
 
-Point::Point(const Point &pos)
-    : x(pos.x), y(pos.y)
+Point::Point(const Point &p)
+    : x(p.x), y(p.y)
 {
+}
+
+Point &
+Point::operator =(const Point &p)
+{
+    x = p.x;
+    y = p.y;
+    return *this;
+}
+
+Point &
+Point::operator +=(const Point &p)
+{
+    x += p.x;
+    y += p.y;
+    return *this;
+}
+
+Point &
+Point::operator -=(const Point &p)
+{
+    x -= p.x;
+    y -= p.y;
+    return *this;
 }

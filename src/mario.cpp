@@ -38,14 +38,14 @@ void Mario::update(ALLEGRO_EVENT event, InputManager input) {
                     sound->playJumpSmall();
                 dir = Up;
                 isOnAir = true;
-                velocity.second = -jumpSpeed;
+                velocity.y = -jumpSpeed;
                 activeGravity = true;
             }
         } if (input.isKeyDown(ALLEGRO_KEY_LEFT)) {
             dir = Left;
             rightOrLeftFlag = 1;
             if (!isObstacleOnLeft)
-                velocity.first = -moveSpeed;
+                velocity.x = -moveSpeed;
             currentFrameNumber += frameChangeSpeed;
             if (currentFrameNumber >= 9)
                 currentFrameNumber = 0;
@@ -54,7 +54,7 @@ void Mario::update(ALLEGRO_EVENT event, InputManager input) {
             dir = Right;
             rightOrLeftFlag = 0;
             if (!isObstacleOnRight)
-                velocity.first = moveSpeed;
+                velocity.x = moveSpeed;
             currentFrameNumber += frameChangeSpeed;
             if (currentFrameNumber >= 9)
                 currentFrameNumber = 0;
@@ -63,31 +63,30 @@ void Mario::update(ALLEGRO_EVENT event, InputManager input) {
             dir = Down;
         }
     } else {
-        velocity.first = 0;
+        velocity.x = 0;
     }
 
-    if (velocity.first == 0 && velocity.second == 0) {
+    if (velocity.x == 0 && velocity.y == 0) {
         currentFrame = stand;
         currentFrameNumber = 0;
     }
 
     if (activeGravity)
-        velocity.second += gravity;
+        velocity.y += gravity;
 
-    position.x += velocity.first;
-    position.y += velocity.second;
+    position.x += velocity.x;
+    position.y += velocity.y;
 
-    box->update(position.x, position.y);
+    box->move(position);
 
     isObstacleOnBottom = isObstacleOnLeft = isObstacleOnRight = isObstacleOnTop = false;
 }
 void Mario::draw() {
-    al_draw_scaled_bitmap(bitmap.getImage(), currentFrame->left, currentFrame->top, currentFrame->width, currentFrame->height
-                          , box->left, box->top, scaledWidth, scaledHeight, rightOrLeftFlag);
+    al_draw_scaled_bitmap(bitmap.getImage(), currentFrame->left(), currentFrame->top(), currentFrame->width(), currentFrame->height(), box->left(), box->top(), scaledWidth, scaledHeight, rightOrLeftFlag);
 }
 
 bool Mario::haveCollideWith(GameObject *obj) {
-    if (this->isCollidable && obj->isCollidable && this->box->intersects(obj->box)) {
+    if (this->isCollidable && obj->isCollidable && this->box->intersects(*obj->box)) {
         return true;
     }
     return false;
@@ -95,25 +94,25 @@ bool Mario::haveCollideWith(GameObject *obj) {
 
 void Mario::collide(GameObject *obj) {
     if (obj->objectType == GameObject::Wall) {
-        velocity.second = 0;
-        box->updateWithBottom(obj->box->top);
+        velocity.y = 0;
+        box->updateWithBottom(obj->box->top());
         isOnAir = false;
         activeGravity = false;
     } else if (obj->objectType == GameObject::Pipe) {
-        int edge = this->box->intersects(obj->box);
+        int edge = this->box->intersects(*obj->box);
         if ((edge & Rectangle::Bottom) == Rectangle::Bottom) {
-            velocity.second = 0;
-            box->updateWithBottom(obj->box->top);
+            velocity.y = 0;
+            box->updateWithBottom(obj->box->top());
             isObstacleOnBottom = true;
             isOnAir = false;
             activeGravity = false;
         } if ((edge & Rectangle::Right) == Rectangle::Right) {
-            velocity.first = 0;
-            box->updateWithRight(obj->box->left);
+            velocity.x = 0;
+            box->updateWithRight(obj->box->left());
             isObstacleOnRight = true;
         } if ((edge & Rectangle::Left) == Rectangle::Left) {
-            velocity.first = 0;
-            box->updateWithLeft(obj->box->right);
+            velocity.x = 0;
+            box->updateWithLeft(obj->box->right());
             isObstacleOnLeft = true;
         }
     } else if (obj->objectType == GameObject::Enemy) {

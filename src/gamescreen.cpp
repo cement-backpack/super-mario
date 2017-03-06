@@ -1,5 +1,4 @@
 #include "gamescreen.h"
-#include <iostream>
 
 GameScreen::GameScreen(SoundManager *sound)
     : mario(sound), map("1")
@@ -28,9 +27,9 @@ void GameScreen::checkCollides() {
     if (!thereIsAtLeastOneCollide) {
         mario.activeGravity = true;
     }
-    if (mario.box->right > SCREEN_WIDTH / 4 * 3) {
+    if (mario.box->right() > SCREEN_WIDTH / 4 * 3) {
         if (currentX <= 3390 * SCALE) {
-            if (mario.velocity.first > 0) {
+            if (mario.velocity.x > 0) {
                 map.moveMapToLeft();
                 mario.box->updateWithRight(SCREEN_WIDTH / 4 * 3);
             }
