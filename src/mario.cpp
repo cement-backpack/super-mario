@@ -36,13 +36,13 @@ void Mario::update(ALLEGRO_EVENT event, InputManager input) {
                     sound->playJumpBig();
                 else
                     sound->playJumpSmall();
-                dir = Up;
                 isOnAir = true;
                 velocity.y = -jumpSpeed;
                 activeGravity = true;
             }
-        } if (input.isKeyDown(ALLEGRO_KEY_LEFT)) {
-            dir = Left;
+        }
+
+        if (input.isKeyDown(ALLEGRO_KEY_LEFT)) {
             rightOrLeftFlag = 1;
             if (!isObstacleOnLeft)
                 velocity.x = -moveSpeed;
@@ -50,8 +50,9 @@ void Mario::update(ALLEGRO_EVENT event, InputManager input) {
             if (currentFrameNumber >= 9)
                 currentFrameNumber = 0;
             currentFrame = walk[(int)currentFrameNumber / 3];
-        } if (input.isKeyDown(ALLEGRO_KEY_RIGHT)) {
-            dir = Right;
+        }
+
+        if (input.isKeyDown(ALLEGRO_KEY_RIGHT)) {
             rightOrLeftFlag = 0;
             if (!isObstacleOnRight)
                 velocity.x = moveSpeed;
@@ -59,8 +60,6 @@ void Mario::update(ALLEGRO_EVENT event, InputManager input) {
             if (currentFrameNumber >= 9)
                 currentFrameNumber = 0;
             currentFrame = walk[(int)currentFrameNumber / 3];
-        } if (input.isKeyDown(ALLEGRO_KEY_DOWN)){
-            dir = Down;
         }
     } else {
         velocity.x = 0;
@@ -86,7 +85,7 @@ void Mario::draw() {
 }
 
 bool Mario::haveCollideWith(GameObject *obj) {
-    if (this->isCollidable && obj->isCollidable && this->box->intersects(*obj->box)) {
+    if (isCollidable && obj->isCollidable && box->intersects(*obj->box)) {
         return true;
     }
     return false;
@@ -99,18 +98,23 @@ void Mario::collide(GameObject *obj) {
         isOnAir = false;
         activeGravity = false;
     } else if (obj->objectType == GameObject::Pipe) {
-        int edge = this->box->intersects(*obj->box);
+        int edge = box->intersects(*obj->box);
+
         if ((edge & Rectangle::Bottom) == Rectangle::Bottom) {
             velocity.y = 0;
             box->updateWithBottom(obj->box->top());
             isObstacleOnBottom = true;
             isOnAir = false;
             activeGravity = false;
-        } if ((edge & Rectangle::Right) == Rectangle::Right) {
+        }
+
+        if ((edge & Rectangle::Right) == Rectangle::Right) {
             velocity.x = 0;
             box->updateWithRight(obj->box->left());
             isObstacleOnRight = true;
-        } if ((edge & Rectangle::Left) == Rectangle::Left) {
+        }
+
+        if ((edge & Rectangle::Left) == Rectangle::Left) {
             velocity.x = 0;
             box->updateWithLeft(obj->box->right());
             isObstacleOnLeft = true;

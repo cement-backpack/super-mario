@@ -23,7 +23,6 @@ private:
 
 public:
     enum Direction {Up, Down, Left, Right};
-    Direction dir;
 
     Mario(SoundManager *sound);
 
