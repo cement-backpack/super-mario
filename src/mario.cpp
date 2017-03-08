@@ -1,30 +1,25 @@
 #include "mario.h"
 
 Mario::Mario(SoundManager *sound)
-    : GameObject("res/images/mario-small.png", Point(32 * SCALE, 32 * SCALE))
+    : GameObject("res/images/mario-small.png", Point(32 * SCALE, 32 * SCALE)), sprite(bitmap)
 {
     type = Mario::Small;
+    activeGravity = true;
 
     scaledWidth = bitmap.getWidth() / 3 * SCALE;
     scaledHeight = bitmap.getHeight() / 3 * SCALE;
-    stand = new Rectangle(bitmap.getWidth() / 3 * 2, bitmap.getHeight() / 3, bitmap.getWidth() / 3, bitmap.getHeight() / 3);
-    run = new Rectangle(bitmap.getWidth() / 3, bitmap.getHeight() / 3, bitmap.getWidth() / 3, bitmap.getHeight() / 3);
-    crouchOrDie = new Rectangle(0, 0, bitmap.getWidth() / 3, bitmap.getHeight() / 3);
-    for (int i = 0; i < 2; i++)
-        hang[i] = new Rectangle(bitmap.getWidth() / 3 * (i + 1), 0, bitmap.getWidth() / 3, bitmap.getHeight() / 3);
-    for (int i = 0; i < 3; i++)
-        walk[i] = new Rectangle(bitmap.getWidth() / 3 * i, bitmap.getHeight() / 3 * 2, bitmap.getWidth() / 3, bitmap.getHeight() / 3);
 
-    currentFrame = stand;
-    jumpSpeed = 9;
-    moveSpeed = 5;
     gravity = 0.5;
+
     box.move(position);
     box.resize(Point(scaledWidth, scaledHeight));
+
     objectType = GameObject::Mario;
     isCollidable = true;
 
     this->sound = sound;
+
+    currentFrameNumber = 0;
 }
 
 void Mario::update(ALLEGRO_EVENT event, InputManager input) {
@@ -44,31 +39,28 @@ void Mario::update(ALLEGRO_EVENT event, InputManager input) {
         }
 
         if (input.isKeyDown(ALLEGRO_KEY_LEFT)) {
-            rightOrLeftFlag = 1;
+            sprite.setDirection(MarioSprite::MarioDirection::Left);
             if (!isObstacleOnLeft)
                 velocity.x = -moveSpeed;
             currentFrameNumber += frameChangeSpeed;
-            if (currentFrameNumber >= 9)
-                currentFrameNumber = 0;
-            currentFrame = walk[(int)currentFrameNumber / 3];
+            sprite.setState(MarioSprite::MarioState::Walking);
+            sprite.setStep(currentFrameNumber / 3);
         }
 
         if (input.isKeyDown(ALLEGRO_KEY_RIGHT)) {
-            rightOrLeftFlag = 0;
+            sprite.setDirection(MarioSprite::MarioDirection::Right);
             if (!isObstacleOnRight)
                 velocity.x = moveSpeed;
             currentFrameNumber += frameChangeSpeed;
-            if (currentFrameNumber >= 9)
-                currentFrameNumber = 0;
-            currentFrame = walk[(int)currentFrameNumber / 3];
+            sprite.setState(MarioSprite::MarioState::Walking);
+            sprite.setStep(currentFrameNumber / 3);
         }
     } else {
         velocity.x = 0;
     }
 
     if (velocity.x == 0 && velocity.y == 0) {
-        currentFrame = stand;
-        currentFrameNumber = 0;
+        sprite.setState(MarioSprite::MarioState::Standing);
     }
 
     if (activeGravity)
@@ -82,7 +74,8 @@ void Mario::update(ALLEGRO_EVENT event, InputManager input) {
     isObstacleOnBottom = isObstacleOnLeft = isObstacleOnRight = isObstacleOnTop = false;
 }
 void Mario::draw() {
-    al_draw_scaled_bitmap(bitmap.getImage(), currentFrame->left(), currentFrame->top(), currentFrame->width(), currentFrame->height(), box.left(), box.top(), scaledWidth, scaledHeight, rightOrLeftFlag);
+    const Rectangle &frame = sprite.getRectangle();
+    al_draw_scaled_bitmap(bitmap.getImage(), frame.left(), frame.top(), frame.width(), frame.height(), box.left(), box.top(), scaledWidth, scaledHeight, sprite.getDirection() == MarioSprite::MarioDirection::Left);
 }
 
 bool Mario::haveCollideWith(GameObject *obj) {

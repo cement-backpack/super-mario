@@ -3,19 +3,17 @@
 
 #include "gameobject.h"
 #include "inputmanager.h"
+#include "mariosprite.h"
 #include "soundmanager.h"
 
 class Mario : public GameObject {
 private:
     SoundManager *sound;
 
-    ALLEGRO_BITMAP *image;
+    MarioSprite sprite;
     enum MarioType {Big, Small};
     MarioType type;
-    Rectangle *stand, *walk[3], *run, *hang[2], *crouchOrDie;
-    Rectangle *currentFrame;
-    int rightOrLeftFlag = 0; // right = 0, left = 1
-    float jumpSpeed, moveSpeed;
+    const float jumpSpeed = 9, moveSpeed = 5;
     bool isOnAir = false;
     float frameChangeSpeed = 0.5;
     float currentFrameNumber = 0;

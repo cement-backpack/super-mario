@@ -24,6 +24,7 @@ add_executable (Mario-Allegro
 	src/map.cpp
 	src/maploader.cpp
 	src/mario.cpp
+	src/mariosprite.cpp
 	src/owl.cpp
 	src/pipe.cpp
 	src/point.cpp
