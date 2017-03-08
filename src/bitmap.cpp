@@ -44,7 +44,7 @@ Bitmap::destroy()
 }
 
 int
-Bitmap::getWidth()
+Bitmap::getWidth() const
 {
     if (image == NULL)
         return -1;
@@ -52,7 +52,7 @@ Bitmap::getWidth()
 }
 
 int
-Bitmap::getHeight()
+Bitmap::getHeight() const
 {
     if (image == NULL)
         return -1;

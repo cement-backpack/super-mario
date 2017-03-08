@@ -21,8 +21,8 @@ public:
     bool load(const std::string &filename);
     void destroy();
 
-    int getWidth();
-    int getHeight();
+    int getWidth() const;
+    int getHeight() const;
 };
 
 #endif // BITMAP_H
