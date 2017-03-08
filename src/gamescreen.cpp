@@ -27,11 +27,11 @@ void GameScreen::checkCollides() {
     if (!thereIsAtLeastOneCollide) {
         mario.activeGravity = true;
     }
-    if (mario.box->right() > SCREEN_WIDTH / 4 * 3) {
+    if (mario.box.right() > SCREEN_WIDTH / 4 * 3) {
         if (currentX <= 3390 * SCALE) {
             if (mario.velocity.x > 0) {
                 map.moveMapToLeft();
-                mario.box->updateWithRight(SCREEN_WIDTH / 4 * 3);
+                mario.box.updateWithRight(SCREEN_WIDTH / 4 * 3);
             }
         } else
             currentX = 3392 * SCALE;

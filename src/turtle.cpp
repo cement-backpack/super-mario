@@ -5,7 +5,8 @@ Turtle::Turtle(const Point &pos)
 {
     scaledWidth = bitmap.getWidth() / 2 * SCALE;
     scaledHeight = bitmap.getHeight() / 3 * SCALE;
-    box = new Rectangle(position.x, position.y, scaledWidth, scaledHeight);
+    box.move(position);
+    box.resize(Point(scaledWidth, scaledHeight));
     objectType = GameObject::Enemy;
 
     for (int i = 0; i < 2; i++)
@@ -34,9 +35,9 @@ void Turtle::update(ALLEGRO_EVENT event) {
 }
 
 void Turtle::draw() {
-    al_draw_scaled_bitmap(bitmap.getImage(), currentFrame->left(), currentFrame->top(), currentFrame->width(), currentFrame->height(), box->left(), box->top(), scaledWidth, scaledHeight, 0);
+    al_draw_scaled_bitmap(bitmap.getImage(), currentFrame->left(), currentFrame->top(), currentFrame->width(), currentFrame->height(), box.left(), box.top(), scaledWidth, scaledHeight, 0);
 }
 
 void Turtle::moveLeft() {
-    box->move(Point(box->left() - 5, box->top()));
+    box.move(Point(box.left() - 5, box.top()));
 }

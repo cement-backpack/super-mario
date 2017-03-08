@@ -98,6 +98,12 @@ Rectangle::move(const Point &point)
 }
 
 void
+Rectangle::resize(const Point &point)
+{
+    size = point;
+}
+
+void
 Rectangle::updateWithLeft(float left)
 {
     position.x = left;

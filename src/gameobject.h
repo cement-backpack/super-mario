@@ -33,7 +33,7 @@ public:
     };
     ObjectType objectType;
 
-    Rectangle *box;
+    Rectangle box;
     bool isCollidable = false;
     Point velocity;
 

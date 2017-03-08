@@ -16,7 +16,8 @@ Bush::Bush(BushType type, const Point &pos)
     }
     scaledWidth = bitmap.getWidth() * SCALE;
     scaledHeight = bitmap.getHeight() * SCALE;
-    box = new Rectangle(position.x, position.y, scaledWidth, scaledHeight);
+    box.move(position);
+    box.resize(Point(scaledWidth, scaledHeight));
     objectType = GameObject::Bush;
 }
 
@@ -25,9 +26,9 @@ void Bush::update(ALLEGRO_EVENT event) {
 }
 
 void Bush::draw() {
-    al_draw_scaled_bitmap(bitmap.getImage(), 0, 0, bitmap.getWidth(), bitmap.getHeight(), box->left(), box->top(), scaledWidth, scaledHeight, 0);
+    al_draw_scaled_bitmap(bitmap.getImage(), 0, 0, bitmap.getWidth(), bitmap.getHeight(), box.left(), box.top(), scaledWidth, scaledHeight, 0);
 }
 
 void Bush::moveLeft() {
-    box->move(Point(box->left() - 5, box->top()));
+    box.move(Point(box.left() - 5, box.top()));
 }

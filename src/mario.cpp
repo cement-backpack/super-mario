@@ -19,7 +19,8 @@ Mario::Mario(SoundManager *sound)
     jumpSpeed = 9;
     moveSpeed = 5;
     gravity = 0.5;
-    box = new Rectangle(position.x, position.y, scaledWidth, scaledHeight);
+    box.move(position);
+    box.resize(Point(scaledWidth, scaledHeight));
     objectType = GameObject::Mario;
     isCollidable = true;
 
@@ -76,16 +77,16 @@ void Mario::update(ALLEGRO_EVENT event, InputManager input) {
     position.x += velocity.x;
     position.y += velocity.y;
 
-    box->move(position);
+    box.move(position);
 
     isObstacleOnBottom = isObstacleOnLeft = isObstacleOnRight = isObstacleOnTop = false;
 }
 void Mario::draw() {
-    al_draw_scaled_bitmap(bitmap.getImage(), currentFrame->left(), currentFrame->top(), currentFrame->width(), currentFrame->height(), box->left(), box->top(), scaledWidth, scaledHeight, rightOrLeftFlag);
+    al_draw_scaled_bitmap(bitmap.getImage(), currentFrame->left(), currentFrame->top(), currentFrame->width(), currentFrame->height(), box.left(), box.top(), scaledWidth, scaledHeight, rightOrLeftFlag);
 }
 
 bool Mario::haveCollideWith(GameObject *obj) {
-    if (isCollidable && obj->isCollidable && box->intersects(*obj->box)) {
+    if (isCollidable && obj->isCollidable && box.intersects(obj->box)) {
         return true;
     }
     return false;
@@ -94,15 +95,15 @@ bool Mario::haveCollideWith(GameObject *obj) {
 void Mario::collide(GameObject *obj) {
     if (obj->objectType == GameObject::Wall) {
         velocity.y = 0;
-        box->updateWithBottom(obj->box->top());
+        box.updateWithBottom(obj->box.top());
         isOnAir = false;
         activeGravity = false;
     } else if (obj->objectType == GameObject::Pipe) {
-        int edge = box->intersects(*obj->box);
+        int edge = box.intersects(obj->box);
 
         if ((edge & Rectangle::Bottom) == Rectangle::Bottom) {
             velocity.y = 0;
-            box->updateWithBottom(obj->box->top());
+            box.updateWithBottom(obj->box.top());
             isObstacleOnBottom = true;
             isOnAir = false;
             activeGravity = false;
@@ -110,13 +111,13 @@ void Mario::collide(GameObject *obj) {
 
         if ((edge & Rectangle::Right) == Rectangle::Right) {
             velocity.x = 0;
-            box->updateWithRight(obj->box->left());
+            box.updateWithRight(obj->box.left());
             isObstacleOnRight = true;
         }
 
         if ((edge & Rectangle::Left) == Rectangle::Left) {
             velocity.x = 0;
-            box->updateWithLeft(obj->box->right());
+            box.updateWithLeft(obj->box.right());
             isObstacleOnLeft = true;
         }
     } else if (obj->objectType == GameObject::Enemy) {

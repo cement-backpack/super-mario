@@ -5,6 +5,7 @@ Block::Block(int size, const Point &pos)
 {
     scaledWidth = bitmap.getWidth() * SCALE;
     scaledHeight = bitmap.getHeight() * SCALE;
-    box = new Rectangle(position.x, position.y, scaledWidth, scaledHeight);
+    box.move(position);
+    box.resize(Point(scaledWidth, scaledHeight));
     objectType = GameObject::Block;
 }

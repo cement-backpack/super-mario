@@ -8,7 +8,13 @@ protected:
     Point position, size;
 
 public:
-    enum Edge {Top = 1, Bottom = 2, Left = 4, Right = 8, None = 0};
+    enum Edge {
+        None = 0,
+        Top = 1,
+        Bottom = 2,
+        Left = 4,
+        Right = 8,
+    };
 
     Rectangle(float x, float y, float w, float h);
 
@@ -29,7 +35,8 @@ public:
     bool intersects(const Point &point) const;
     int intersects(const Rectangle &rect) const;
 
-    void move(const Point &bl);
+    void move(const Point &point);
+    void resize(const Point &point);
 
     void updateWithBottom(float bottom);
     void updateWithLeft(float left);
