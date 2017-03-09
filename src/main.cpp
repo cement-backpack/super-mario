@@ -57,8 +57,8 @@ int main() {
                     game.draw();
                     al_flip_display();
                 }
+                game.update(event);
             }
-            game.update(event);
         }
     }
 
