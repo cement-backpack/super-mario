@@ -5,7 +5,6 @@ Owl::Owl(const Point &pos)
 {
     scaledWidth = bitmap.getWidth() / 2 * SCALE;
     scaledHeight = bitmap.getHeight() * SCALE;
-    box.move(position);
     box.resize(Point(scaledWidth, scaledHeight));
     objectType = GameObject::Enemy;
 

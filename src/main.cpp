@@ -32,8 +32,6 @@ int main() {
     al_register_event_source(eventQueue, al_get_timer_event_source(timer));
     al_register_event_source(eventQueue, al_get_display_event_source(display));
 
-    bool done = false;
-
     {
         InputManager input;
         SoundManager sound;
@@ -43,21 +41,19 @@ int main() {
 
         al_start_timer(timer);
 
-        while (!done) {
+        for (;;) {
             ALLEGRO_EVENT event;
             al_wait_for_event(eventQueue, &event);
 
             if (input.isKeyPressed(event, ALLEGRO_KEY_ESCAPE) || event.type == ALLEGRO_EVENT_DISPLAY_CLOSE)
-                done = true;
+                break;
 
-            if (event.type == ALLEGRO_EVENT_TIMER) {
-                if (event.timer.source == timer) {
-                    game.checkCollides();
-                    al_clear_to_color(al_map_rgb(107, 140, 255));
-                    game.draw();
-                    al_flip_display();
-                }
+            if (event.timer.source == timer) {
                 game.update(event);
+                game.checkCollides();
+                al_clear_to_color(al_map_rgb(107, 140, 255));
+                game.draw();
+                al_flip_display();
             }
         }
     }

@@ -11,7 +11,6 @@ Mario::Mario(SoundManager *sound)
 
     gravity = 0.5;
 
-    box.move(position);
     box.resize(Point(scaledWidth, scaledHeight));
 
     objectType = GameObject::Mario;
@@ -66,10 +65,7 @@ void Mario::update(ALLEGRO_EVENT event, InputManager input) {
     if (activeGravity)
         velocity.y += gravity;
 
-    position.x += velocity.x;
-    position.y += velocity.y;
-
-    box.move(position);
+    box.shift(velocity);
 
     isObstacleOnBottom = isObstacleOnLeft = isObstacleOnRight = isObstacleOnTop = false;
 }
@@ -116,4 +112,16 @@ void Mario::collide(GameObject *obj) {
     } else if (obj->objectType == GameObject::Enemy) {
         sound->PlayPlayerDie();
     }
+}
+
+float
+Mario::right()
+{
+    return box.right();
+}
+
+void
+Mario::updateWithRight(float x)
+{
+    box.updateWithRight(x);
 }

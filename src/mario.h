@@ -28,6 +28,9 @@ public:
     void draw();
     bool haveCollideWith(GameObject *obj);
     void collide(GameObject *obj);
+
+    float right();
+    void updateWithRight(float x);
 };
 
 #endif // MARIO_H

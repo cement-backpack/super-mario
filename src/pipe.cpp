@@ -17,7 +17,6 @@ Pipe::Pipe(PipeType type, const Point &pos)
     isCollidable = true;
     scaledWidth = bitmap.getWidth() * SCALE;
     scaledHeight = bitmap.getHeight() * SCALE;
-    box.move(position);
     box.resize(Point(scaledWidth, scaledHeight));
     objectType = GameObject::Pipe;
 }

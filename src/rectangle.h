@@ -17,6 +17,7 @@ public:
     };
 
     Rectangle(float x, float y, float w, float h);
+    Rectangle(const Point &position, const Point &size);
 
     float left() const;
     float right() const;
@@ -35,6 +36,7 @@ public:
     bool intersects(const Point &point) const;
     int intersects(const Rectangle &rect) const;
 
+    void shift(const Point &point);
     void move(const Point &point);
     void resize(const Point &point);
 

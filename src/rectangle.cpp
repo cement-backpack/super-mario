@@ -5,6 +5,11 @@ Rectangle::Rectangle(float x, float y, float w, float h)
 {
 }
 
+Rectangle::Rectangle(const Point &position, const Point &size)
+    : position(position), size(size)
+{
+}
+
 float
 Rectangle::left() const
 {
@@ -89,6 +94,12 @@ Rectangle::intersects(const Rectangle &rect) const
         res |= Rectangle::Left | Rectangle::Top;
 
     return res;
+}
+
+void
+Rectangle::shift(const Point &point)
+{
+    position += point;
 }
 
 void

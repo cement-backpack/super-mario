@@ -11,7 +11,6 @@
 
 class GameObject {
 protected:
-    Point position;
     Bitmap bitmap;
     float scaledWidth, scaledHeight;
     float gravity;

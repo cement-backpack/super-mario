@@ -5,7 +5,6 @@ Turtle::Turtle(const Point &pos)
 {
     scaledWidth = bitmap.getWidth() / 2 * SCALE;
     scaledHeight = bitmap.getHeight() / 3 * SCALE;
-    box.move(position);
     box.resize(Point(scaledWidth, scaledHeight));
     objectType = GameObject::Enemy;
 

@@ -5,7 +5,6 @@ Flag::Flag(const Point &pos)
 {
     scaledWidth = bitmap.getWidth() * SCALE;
     scaledHeight = bitmap.getHeight() * SCALE;
-    box.move(position);
     box.resize(Point(scaledWidth, scaledHeight));
     objectType = GameObject::Bush;
 }
