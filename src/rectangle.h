@@ -3,6 +3,8 @@
 
 #include "point.h"
 
+#include <ostream>
+
 class Rectangle {
 protected:
     Point position, size;
@@ -44,6 +46,12 @@ public:
     void updateWithLeft(float left);
     void updateWithRight(float right);
     void updateWithTop(float top);
+
+    friend std::ostream &
+    operator <<(std::ostream &stream, const Rectangle &rect)
+    {
+        return stream << "(" << rect.position << ", " << rect.size << ")";
+    }
 };
 
 #endif // FLOATRECT_H
