@@ -68,10 +68,10 @@ Rectangle::getLowerRight() const
 bool
 Rectangle::intersects(const Point &point) const
 {
-    return (position.x <= point.x) &&
-        ((position.x + size.x) >= point.x) &&
-        (position.y <= point.y) &&
-        ((position.y + size.y) >= point.y);
+    return (position.x < point.x) &&
+        ((position.x + size.x) > point.x) &&
+        (position.y < point.y) &&
+        ((position.y + size.y) > point.y);
 }
 
 int
